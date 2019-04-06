@@ -1,6 +1,7 @@
 package es.uned.poo.themepark;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Write a description of class RideManager here.
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public final class RideManager {
 	private static RideManager instance;
 	private final RideTypeCatalog catalog;
-	private final ArrayList<Ride> rides;
+	private final List<Ride> rides;
 
 	/**
 	 * Constructor for objects of class RideManager
@@ -24,7 +25,7 @@ public final class RideManager {
 
 	/**
 	 * An example of a method - replace this comment with your own
-	 * 
+	 *
 	 * @param y
 	 *            a sample parameter for a method
 	 * @return the sum of x and y
@@ -38,7 +39,7 @@ public final class RideManager {
 
 	/**
 	 * An example of a method - replace this comment with your own
-	 * 
+	 *
 	 * @param y
 	 *            a sample parameter for a method
 	 * @return the sum of x and y
