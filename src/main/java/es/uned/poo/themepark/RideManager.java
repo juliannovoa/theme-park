@@ -13,6 +13,7 @@ public final class RideManager {
 	private static RideManager instance;
 	private final RideTypeCatalog catalog;
 	private final List<Ride> rides;
+	private WorkforceParameters workforceParameters;
 
 	/**
 	 * Constructor for objects of class RideManager
@@ -37,6 +38,11 @@ public final class RideManager {
 		return instance;
 	}
 
+	public String getReportByYear(int year) {
+		final RideReport report = new RideReport(rides, workforceParameters, year);
+		return report.getReport();
+	}
+
 	/**
 	 * An example of a method - replace this comment with your own
 	 *
@@ -45,7 +51,10 @@ public final class RideManager {
 	 * @return the sum of x and y
 	 */
 	private void initialiseSample() {
+
 		RideType type;
+
+		workforceParameters = new WorkforceParameters(950, 0.15, 0.1, 0.2, 0.3, 0.1);
 
 		type = catalog.getRideType("A");
 		rides.add(new Ride("A1", type));

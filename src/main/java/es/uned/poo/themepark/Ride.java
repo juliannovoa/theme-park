@@ -72,6 +72,14 @@ public class Ride {
 		return periods;
 	}
 
+	public int getAssistants() {
+		return type.getAssitants();
+	}
+
+	public int getResponsibles() {
+		return type.getResponsibles();
+	}
+
 	/**
 	 * An example of a method - replace this comment with your own.
 	 *
