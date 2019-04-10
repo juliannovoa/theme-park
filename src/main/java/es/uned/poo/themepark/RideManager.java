@@ -1,5 +1,6 @@
 package es.uned.poo.themepark;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,7 +55,8 @@ public final class RideManager {
 
 		RideType type;
 
-		workforceParameters = new WorkforceParameters(950, 0.15, 0.1, 0.2, 0.3, 0.1);
+		workforceParameters = new WorkforceParameters(BigDecimal.valueOf(950), BigDecimal.valueOf(0.15),
+				BigDecimal.valueOf(0.1), BigDecimal.valueOf(0.2), BigDecimal.valueOf(0.3), BigDecimal.valueOf(0.1));
 
 		type = catalog.getRideType("A");
 		rides.add(new Ride("A1", type));

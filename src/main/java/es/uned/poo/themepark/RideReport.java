@@ -76,7 +76,13 @@ public class RideReport {
 				}
 			}
 		}
+
 		final SortedMap<LocalDate, BigDecimal> dailyCost = new TreeMap<>();
+		for (final LocalDate date : dailyWorkers.keySet()) {
+			final int[] workers = dailyWorkers.get(date);
+			dailyCost.put(date, workforceParameters.calculateDailyCost(workers[0], workers[1]));
+		}
+
 		return dailyCost;
 	}
 

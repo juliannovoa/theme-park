@@ -1,17 +1,19 @@
 package es.uned.poo.themepark;
 
+import java.math.BigDecimal;
+
 public class WorkforceParameters {
-	private final int basicSalary;
-	private final double responsibleBonus;
-	private final double customerServiceBonus;
-	private final double publicRelationshipBonus;
-	private final double customerServiceRatio;
-	private final double publicRelationshipRatio;
+	private final BigDecimal baseSalary;
+	private final BigDecimal responsibleBonus;
+	private final BigDecimal customerServiceBonus;
+	private final BigDecimal publicRelationshipBonus;
+	private final BigDecimal customerServiceRatio;
+	private final BigDecimal publicRelationshipRatio;
 
-	public WorkforceParameters(int basicSalary, double responsibleBonus, double customerServiceBonus,
-			double publicRelationshipBonus, double customerServiceRatio, double publicRelationshipRatio) {
+	public WorkforceParameters(BigDecimal basicSalary, BigDecimal responsibleBonus, BigDecimal customerServiceBonus,
+			BigDecimal publicRelationshipBonus, BigDecimal customerServiceRatio, BigDecimal publicRelationshipRatio) {
 
-		this.basicSalary = basicSalary;
+		this.baseSalary = basicSalary;
 		this.responsibleBonus = responsibleBonus;
 		this.customerServiceBonus = customerServiceBonus;
 		this.publicRelationshipBonus = publicRelationshipBonus;
@@ -19,28 +21,20 @@ public class WorkforceParameters {
 		this.publicRelationshipRatio = publicRelationshipRatio;
 	}
 
-	public int getBasicSalary() {
-		return basicSalary;
-	}
+	public BigDecimal calculateDailyCost(int responsibles, int assistants) {
+		final BigDecimal rideStaff = BigDecimal.valueOf(responsibles + assistants);
+		final BigDecimal customerServiceStaff = customerServiceRatio.multiply(rideStaff).setScale(0,
+				BigDecimal.ROUND_CEILING);
+		final BigDecimal publicRelationShipStaff = publicRelationshipRatio.multiply(rideStaff).setScale(0,
+				BigDecimal.ROUND_CEILING);
 
-	public double getResponsibleBonus() {
-		return responsibleBonus;
-	}
+		final BigDecimal cost = baseSalary.multiply(responsibleBonus).multiply(BigDecimal.valueOf(responsibles));
+		cost.add(BigDecimal.valueOf(assistants).multiply(baseSalary));
+		cost.add(customerServiceStaff.multiply(baseSalary).multiply(customerServiceBonus));
+		cost.add(publicRelationShipStaff.multiply(baseSalary).multiply(publicRelationshipBonus));
 
-	public double getCustomerServiceBonus() {
-		return customerServiceBonus;
-	}
+		return cost;
 
-	public double getPublicRelationshipBonus() {
-		return publicRelationshipBonus;
-	}
-
-	public double getCustomerServiceRatio() {
-		return customerServiceRatio;
-	}
-
-	public double getPublicRelationshipRatio() {
-		return publicRelationshipRatio;
 	}
 
 }
