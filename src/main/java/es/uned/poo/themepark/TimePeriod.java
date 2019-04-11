@@ -3,7 +3,6 @@ package es.uned.poo.themepark;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TimePeriod.
  */

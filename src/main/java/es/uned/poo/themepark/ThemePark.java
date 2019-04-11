@@ -1,19 +1,15 @@
 package es.uned.poo.themepark;
 
 /**
- * Write a description of class ThemePark here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The Class ThemePark.
  */
 public class ThemePark {
 
 	/**
-	 * An example of a method - replace this comment with your own
-	 * 
-	 * @param y
-	 *            a sample parameter for a method
-	 * @return the sum of x and y
+	 * The main method.
+	 *
+	 * @param args
+	 *            the arguments
 	 */
 	public static void main(String args[]) {
 		// put your code here

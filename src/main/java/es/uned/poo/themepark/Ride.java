@@ -6,9 +6,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
- * Write a description of class Ride here.
- *
- * @author (your name)
+ * The Class Ride.
  */
 public class Ride {
 
@@ -58,6 +56,13 @@ public class Ride {
 		activePeriods.add(candidate);
 	}
 
+	/**
+	 * Gets the active period by year.
+	 *
+	 * @param year
+	 *            the year
+	 * @return the active period by year
+	 */
 	public SortedSet<TimePeriod> getActivePeriodByYear(int year) {
 		final SortedSet<TimePeriod> periods = new TreeSet<>();
 		final Iterator<TimePeriod> it = activePeriods.iterator();
@@ -72,10 +77,20 @@ public class Ride {
 		return periods;
 	}
 
+	/**
+	 * Gets the assistants.
+	 *
+	 * @return the assistants
+	 */
 	public int getAssistants() {
 		return type.getAssitants();
 	}
 
+	/**
+	 * Gets the responsibles.
+	 *
+	 * @return the responsibles
+	 */
 	public int getResponsibles() {
 		return type.getResponsibles();
 	}

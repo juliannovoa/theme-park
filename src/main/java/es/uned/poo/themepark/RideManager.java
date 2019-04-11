@@ -5,19 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Write a description of class RideManager here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The Class RideManager.
  */
 public final class RideManager {
+
+	/** The instance. */
 	private static RideManager instance;
+
+	/** The catalog. */
 	private final RideTypeCatalog catalog;
+
+	/** The rides. */
 	private final List<Ride> rides;
+
+	/** The workforce parameters. */
 	private WorkforceParameters workforceParameters;
 
 	/**
-	 * Constructor for objects of class RideManager
+	 * Constructor for objects of class RideManager.
 	 */
 	private RideManager() {
 		catalog = new RideTypeCatalog();
@@ -26,10 +31,8 @@ public final class RideManager {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
 	 * @return the sum of x and y
 	 */
 	public static RideManager getInstance() {
@@ -39,16 +42,21 @@ public final class RideManager {
 		return instance;
 	}
 
+	/**
+	 * Gets the report by year.
+	 *
+	 * @param year
+	 *            the year
+	 * @return the report by year
+	 */
 	public String getReportByYear(int year) {
 		final RideReport report = new RideReport(rides, workforceParameters, year);
-		return report.getReport();
+		return report.generateReport();
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
 	 * @return the sum of x and y
 	 */
 	private void initialiseSample() {
@@ -94,10 +102,8 @@ public final class RideManager {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
 	 * @return the sum of x and y
 	 */
 	public String getRidesDescription() {

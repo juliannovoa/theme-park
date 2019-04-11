@@ -4,16 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Write a description of class RideTypeCatalog here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The Class RideTypeCatalog.
  */
 public class RideTypeCatalog {
+
+	/** The ride types. */
 	private final Map<String, RideType> rideTypes;
 
 	/**
-	 * Constructor for objects of class RideTypeCatalog
+	 * Constructor for objects of class RideTypeCatalog.
 	 */
 	public RideTypeCatalog() {
 		rideTypes = new HashMap<>();
@@ -21,10 +20,10 @@ public class RideTypeCatalog {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
+	 * @param typeID
+	 *            the type ID
 	 * @return the sum of x and y
 	 */
 	public RideType getRideType(String typeID) {
@@ -32,10 +31,8 @@ public class RideTypeCatalog {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
 	 * @return the sum of x and y
 	 */
 	private void initialiseSample() {

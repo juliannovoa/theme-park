@@ -1,25 +1,43 @@
 package es.uned.poo.themepark;
 
 /**
- * Write a description of class Ride here.
- *
- * @author J. Novoa
- * @version 27/03/2019
+ * The Class RideType.
  */
 public class RideType {
-	// instance variables - replace the example below with your own
+
+	/** The type. */
 	private final String type;
 
+	/** The assistants. */
 	private final int assistants;
+
+	/** The responsibles. */
 	private final int responsibles;
+
+	/** The children use. */
 	private boolean childrenUse;
+
+	/** The adult use. */
 	private boolean adultUse;
+
+	/** The vip. */
 	private boolean vip;
+
+	/** The max height. */
 	private Double maxHeight;
+
+	/** The min height. */
 	private Double minHeight;
 
 	/**
-	 * Constructor for objects of class Ride
+	 * Constructor for objects of class Ride.
+	 *
+	 * @param type
+	 *            the type
+	 * @param assistants
+	 *            the assistants
+	 * @param responsibles
+	 *            the responsibles
 	 */
 	public RideType(String type, int assistants, int responsibles) {
 		this.type = type;
@@ -28,7 +46,7 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
 	 * @return the number of assistants assigned to a ride
 	 */
@@ -38,7 +56,7 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
 	 * @return the number of assistants assigned to a ride
 	 */
@@ -48,8 +66,10 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
+	 * @param height
+	 *            the height
 	 * @return the number of assistants assigned to a ride
 	 */
 	public RideType withMaxHeight(double height) {
@@ -58,8 +78,10 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
+	 * @param height
+	 *            the height
 	 * @return the number of assistants assigned to a ride
 	 */
 	public RideType withMinHeight(double height) {
@@ -68,7 +90,7 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
 	 * @return the number of assistants assigned to a ride
 	 */
@@ -78,7 +100,7 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
 	 * @return the number of assistants assigned to a ride
 	 */
@@ -87,7 +109,7 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
 	 * @return the number of assistants assigned to a ride
 	 */
@@ -96,10 +118,8 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
 	 * @return the sum of x and y
 	 */
 	public int getResponsibles() {
@@ -107,10 +127,8 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
 	 * @return the sum of x and y
 	 */
 	@Override
@@ -150,10 +168,10 @@ public class RideType {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
+	 * An example of a method - replace this comment with your own.
 	 *
-	 * @param y
-	 *            a sample parameter for a method
+	 * @param o
+	 *            the o
 	 * @return the sum of x and y
 	 */
 	@Override

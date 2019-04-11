@@ -4,19 +4,27 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
- * Write a description of class UserInterface here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * The Class UserInterface.
  */
 public class UserInterface {
+
+	/** The ride manager. */
 	private final RideManager rideManager;
+
+	/** The input. */
 	private final Scanner input;
+
+	/** The running. */
 	private boolean running;
+
+	/** The writer. */
 	private final PrintStream writer;
 
 	/**
-	 * Constructor for objects of class UserInterface
+	 * Constructor for objects of class UserInterface.
+	 *
+	 * @param manager
+	 *            the manager
 	 */
 	public UserInterface(RideManager manager) {
 		rideManager = manager;
@@ -26,10 +34,8 @@ public class UserInterface {
 	}
 
 	/**
-	 * An example of a method - replace this comment with your own
-	 * 
-	 * @param y
-	 *            a sample parameter for a method
+	 * An example of a method - replace this comment with your own.
+	 *
 	 * @return the sum of x and y
 	 */
 	public void run() {
@@ -41,6 +47,9 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Prints the options.
+	 */
 	private void printOptions() {
 		writer.println("===========================================");
 		writer.println("     Sistema de gestión de atracciones");
@@ -50,10 +59,21 @@ public class UserInterface {
 		writer.println("  S: Salir del programa");
 	}
 
+	/**
+	 * Gets the option.
+	 *
+	 * @return the option
+	 */
 	private String getOption() {
 		return input.nextLine().toUpperCase();
 	}
 
+	/**
+	 * Execute option.
+	 *
+	 * @param option
+	 *            the option
+	 */
 	private void executeOption(String option) {
 		switch (option) {
 		case "L":
@@ -68,15 +88,27 @@ public class UserInterface {
 		}
 	}
 
+	/**
+	 * Show ride list.
+	 */
 	private void showRideList() {
 		writer.println(rideManager.getRidesDescription());
 	}
 
+	/**
+	 * End.
+	 */
 	private void end() {
 		writer.println("Saliendo del programa. ¡Hasta luego!");
 		running = false;
 	}
 
+	/**
+	 * Unknown option.
+	 *
+	 * @param option
+	 *            the option
+	 */
 	private void unknownOption(String option) {
 		writer.println("Operación " + option + " no existe.");
 	}
