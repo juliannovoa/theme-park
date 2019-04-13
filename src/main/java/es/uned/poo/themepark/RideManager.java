@@ -1,8 +1,9 @@
 package es.uned.poo.themepark;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Class RideManager.
@@ -16,7 +17,7 @@ public final class RideManager {
 	private final RideTypeCatalog catalog;
 
 	/** The rides. */
-	private final List<Ride> rides;
+	private final Map<String, Ride> rides;
 
 	/** The workforce parameters. */
 	private WorkforceParameters workforceParameters;
@@ -26,7 +27,7 @@ public final class RideManager {
 	 */
 	private RideManager() {
 		catalog = new RideTypeCatalog();
-		rides = new ArrayList<>();
+		rides = new HashMap<>();
 		initialiseSample();
 	}
 
@@ -49,8 +50,8 @@ public final class RideManager {
 	 *            the year
 	 * @return the report by year
 	 */
-	public String getReportByYear(int year) {
-		final RideReport report = new RideReport(rides, workforceParameters, year);
+	public String generateReportByYear(int year) {
+		final RideReport report = new RideReport(rides.values(), workforceParameters, year);
 		return report.generateReport();
 	}
 
@@ -61,44 +62,37 @@ public final class RideManager {
 	 */
 	private void initialiseSample() {
 
-		RideType type;
+		workforceParameters = new WorkforceParameters(BigDecimal.valueOf(950), BigDecimal.valueOf(1.15),
+				BigDecimal.valueOf(1.1), BigDecimal.valueOf(1.2), BigDecimal.valueOf(0.3), BigDecimal.valueOf(0.1));
 
-		workforceParameters = new WorkforceParameters(BigDecimal.valueOf(950), BigDecimal.valueOf(0.15),
-				BigDecimal.valueOf(0.1), BigDecimal.valueOf(0.2), BigDecimal.valueOf(0.3), BigDecimal.valueOf(0.1));
+		addRide("A1", "A");
+		addRide("A2", "A");
+		addRide("A3", "A");
+		addRide("A4", "A");
 
-		type = catalog.getRideType("A");
-		rides.add(new Ride("A1", type));
-		rides.add(new Ride("A2", type));
-		rides.add(new Ride("A3", type));
-		rides.add(new Ride("A4", type));
+		addRide("B1", "B");
+		addRide("B2", "B");
+		addRide("B3", "B");
+		addRide("B4", "B");
+		addRide("B5", "B");
+		addRide("B6", "B");
 
-		type = catalog.getRideType("B");
-		rides.add(new Ride("B1", type));
-		rides.add(new Ride("B2", type));
-		rides.add(new Ride("B3", type));
-		rides.add(new Ride("B4", type));
-		rides.add(new Ride("B5", type));
-		rides.add(new Ride("B6", type));
+		addRide("C1", "C");
+		addRide("C2", "C");
+		addRide("C3", "C");
+		addRide("C4", "C");
 
-		type = catalog.getRideType("C");
-		rides.add(new Ride("C1", type));
-		rides.add(new Ride("C2", type));
-		rides.add(new Ride("C3", type));
-		rides.add(new Ride("C4", type));
+		addRide("D1", "D");
+		addRide("D2", "D");
+		addRide("D3", "D");
 
-		type = catalog.getRideType("D");
-		rides.add(new Ride("D1", type));
-		rides.add(new Ride("D2", type));
-		rides.add(new Ride("D3", type));
-
-		type = catalog.getRideType("E");
-		rides.add(new Ride("E1", type));
-		rides.add(new Ride("E2", type));
-		rides.add(new Ride("E3", type));
-		rides.add(new Ride("E4", type));
-		rides.add(new Ride("E5", type));
-		rides.add(new Ride("E6", type));
-		rides.add(new Ride("E7", type));
+		addRide("E1", "E");
+		addRide("E2", "E");
+		addRide("E3", "E");
+		addRide("E4", "E");
+		addRide("E5", "E");
+		addRide("E6", "E");
+		addRide("E7", "E");
 	}
 
 	/**
@@ -107,11 +101,28 @@ public final class RideManager {
 	 * @return the sum of x and y
 	 */
 	public String getRidesDescription() {
-		String output = "";
-		for (final Ride ride : rides) {
-			output += ride.toString();
+		final StringBuilder output = new StringBuilder();
+		for (final Ride ride : rides.values()) {
+			output.append(ride.toString());
 		}
-		return output;
+		return output.toString();
+	}
+
+	public void addRide(String rideName, String rideType) {
+		final RideType type = catalog.getRideType(rideType);
+		if (type == null || rides.containsKey(rideName)) {
+			throw new IllegalArgumentException("Invalid arguments. Ride could not be created.");
+		}
+		final Ride ride = new Ride(rideName, type);
+		rides.put(rideName, ride);
+	}
+
+	public void addWorkingPeriod(String rideID, LocalDate start, LocalDate end) {
+		final Ride ride = rides.get(rideID);
+		if (ride == null) {
+			throw new IllegalArgumentException("Invalid arguments. Ride does not exists.");
+		}
+		ride.addActivePeriod(start, end);
 	}
 
 }

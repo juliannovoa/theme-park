@@ -23,7 +23,7 @@ public class TimePeriod implements Comparable<TimePeriod> {
 	 *            the end
 	 */
 	public TimePeriod(LocalDate start, LocalDate end) {
-		if (start.isBefore(end)) {
+		if (start.isAfter(end)) {
 			throw new IllegalArgumentException("Beginning date must be before the end date");
 		}
 		this.start = start;
@@ -123,6 +123,13 @@ public class TimePeriod implements Comparable<TimePeriod> {
 		return (start.getYear() <= year) && (end.getYear() >= year);
 	}
 
+	/**
+	 * After year.
+	 *
+	 * @param year
+	 *            the year
+	 * @return true, if successful
+	 */
 	public boolean afterYear(int year) {
 		return start.getYear() > year;
 	}

@@ -1,12 +1,13 @@
 package es.uned.poo.themepark;
 
 import java.io.PrintStream;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 /**
  * The Class UserInterface.
  */
-public class UserInterface {
+public class UserInterface implements Runnable {
 
 	/** The ride manager. */
 	private final RideManager rideManager;
@@ -38,12 +39,15 @@ public class UserInterface {
 	 *
 	 * @return the sum of x and y
 	 */
+	@Override
 	public void run() {
 		String option;
 		while (running) {
 			printOptions();
 			option = getOption();
+			writer.println();
 			executeOption(option);
+			writer.print("\n\n");
 		}
 	}
 
@@ -51,12 +55,15 @@ public class UserInterface {
 	 * Prints the options.
 	 */
 	private void printOptions() {
-		writer.println("===========================================");
-		writer.println("     Sistema de gestión de atracciones");
-		writer.println("===========================================");
-		writer.println("  Seleccione operación:");
-		writer.println("  L: Mostrar listado de atracciones");
+		writer.println("===============================================");
+		writer.println("       Sistema de gestión de atracciones");
+		writer.println("===============================================");
+		writer.println("  Listado de operaciones:");
+		writer.println("  1: Mostrar informe anual de gastos");
+		writer.println("  2: Mostrar listado de atracciones");
+		writer.println("  3: Añadir periodo de actividad a atracción");
 		writer.println("  S: Salir del programa");
+		writer.print("\nSeleccione operación: ");
 	}
 
 	/**
@@ -76,8 +83,14 @@ public class UserInterface {
 	 */
 	private void executeOption(String option) {
 		switch (option) {
-		case "L":
+		case "1":
+			showCostReport();
+			break;
+		case "2":
 			showRideList();
+			break;
+		case "3":
+			addWorkingPeriod();
 			break;
 		case "S":
 			end();
@@ -86,6 +99,49 @@ public class UserInterface {
 			unknownOption(option);
 			break;
 		}
+	}
+
+	private void addWorkingPeriod() {
+		String rideID;
+		LocalDate start, end;
+
+		try {
+			writer.print("Indique atracción: ");
+			rideID = input.nextLine().trim().toUpperCase();
+			writer.println("Indique fecha de inicio: ");
+			start = parseDate();
+			writer.println("Indique fecha de fin: ");
+			end = parseDate();
+
+			rideManager.addWorkingPeriod(rideID, start, end);
+
+		} catch (final Exception e) {
+			writer.println("Error al añadir la fecha de actividad: " + e.getMessage());
+		}
+
+	}
+
+	private LocalDate parseDate() {
+		int day, month, year;
+		writer.print("Día: ");
+		day = Integer.parseInt(input.nextLine().trim());
+		writer.print("Mes: ");
+		month = Integer.parseInt(input.nextLine().trim());
+		writer.print("Año: ");
+		year = Integer.parseInt(input.nextLine().trim());
+
+		return LocalDate.of(year, month, day);
+
+	}
+
+	private void showCostReport() {
+		writer.print("Seleccione año: ");
+		try {
+			writer.println(rideManager.generateReportByYear(Integer.parseInt(input.nextLine().trim())));
+		} catch (final NumberFormatException e) {
+			writer.println("El año introducido no tiene el formato correcto: " + e.getMessage());
+		}
+
 	}
 
 	/**

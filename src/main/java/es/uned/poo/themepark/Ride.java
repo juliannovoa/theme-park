@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class Ride.
  */
@@ -42,6 +43,7 @@ public class Ride {
 	 *            the end
 	 */
 	public void addActivePeriod(LocalDate start, LocalDate end) {
+
 		final TimePeriod candidate = new TimePeriod(start, end);
 		final Iterator<TimePeriod> it = activePeriods.iterator();
 		while (it.hasNext()) {
@@ -96,6 +98,15 @@ public class Ride {
 	}
 
 	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
+	public String getID() {
+		return id;
+	}
+
+	/**
 	 * An example of a method - replace this comment with your own.
 	 *
 	 * @return the sum of x and y
@@ -106,6 +117,20 @@ public class Ride {
 		output += "Ficha de la atracción " + id + "\n";
 		output += "======================================\n";
 		return output + type.toString() + "\n\n";
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object o) {
+		if (!(o instanceof Ride)) {
+			return false;
+		}
+
+		return id.equals(((Ride) o).getID());
 	}
 
 }
