@@ -32,6 +32,7 @@ public class RideReport {
 	/** The Constant CURRENCY. */
 	private final static String CURRENCY = "€";
 
+	/** The Constant ROUNDING_MODE. */
 	private final static RoundingMode ROUNDING_MODE = RoundingMode.CEILING;
 
 	/** The rides. */
@@ -120,6 +121,12 @@ public class RideReport {
 		return output.toString();
 	}
 
+	/**
+	 * Initialise.
+	 *
+	 * @param costArray
+	 *            the cost array
+	 */
 	private void initialise(BigDecimal[] costArray) {
 		for (int i = 0; i < costArray.length; i++) {
 			costArray[i] = new BigDecimal(0);

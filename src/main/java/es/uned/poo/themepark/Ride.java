@@ -113,10 +113,12 @@ public class Ride {
 	 */
 	@Override
 	public String toString() {
-		String output = "======================================\n";
-		output += "Ficha de la atracción " + id + "\n";
-		output += "======================================\n";
-		return output + type.toString() + "\n\n";
+
+		final StringBuilder output = new StringBuilder();
+		output.append("======================================\n");
+		output.append("Ficha de la atracción " + id + "\n");
+		output.append("======================================\n");
+		return output.toString() + type.toString() + "\n\n";
 	}
 
 	/*

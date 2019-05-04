@@ -9,7 +9,7 @@ import java.math.RoundingMode;
 public class WorkforceParameters {
 
 	/** The base salary. */
-	private final BigDecimal baseSalary;
+	private final BigDecimal baseDailySalary;
 
 	/** The responsible bonus. */
 	private final BigDecimal responsibleBonus;
@@ -29,7 +29,7 @@ public class WorkforceParameters {
 	/**
 	 * Instantiates a new workforce parameters.
 	 *
-	 * @param basicSalary
+	 * @param baseSalary
 	 *            the basic salary
 	 * @param responsibleBonus
 	 *            the responsible bonus
@@ -42,10 +42,10 @@ public class WorkforceParameters {
 	 * @param publicRelationshipRatio
 	 *            the public relationship ratio
 	 */
-	public WorkforceParameters(BigDecimal basicSalary, BigDecimal responsibleBonus, BigDecimal customerServiceBonus,
+	public WorkforceParameters(BigDecimal baseSalary, BigDecimal responsibleBonus, BigDecimal customerServiceBonus,
 			BigDecimal publicRelationshipBonus, BigDecimal customerServiceRatio, BigDecimal publicRelationshipRatio) {
 
-		this.baseSalary = basicSalary.multiply(BigDecimal.valueOf(12)).divide(BigDecimal.valueOf(365),
+		this.baseDailySalary = baseSalary.multiply(BigDecimal.valueOf(12)).divide(BigDecimal.valueOf(365),
 				RoundingMode.CEILING);
 		this.responsibleBonus = responsibleBonus;
 		this.customerServiceBonus = customerServiceBonus;
@@ -72,10 +72,10 @@ public class WorkforceParameters {
 		final BigDecimal publicRelationShipStaff = publicRelationshipRatio.multiply(rideStaff).setScale(0,
 				BigDecimal.ROUND_CEILING);
 
-		cost = baseSalary.multiply(responsibleBonus).multiply(BigDecimal.valueOf(responsibles));
-		cost = cost.add(BigDecimal.valueOf(assistants).multiply(baseSalary));
-		cost = cost.add(customerServiceStaff.multiply(baseSalary).multiply(customerServiceBonus));
-		cost = cost.add(publicRelationShipStaff.multiply(baseSalary).multiply(publicRelationshipBonus));
+		cost = baseDailySalary.multiply(responsibleBonus).multiply(BigDecimal.valueOf(responsibles));
+		cost = cost.add(BigDecimal.valueOf(assistants).multiply(baseDailySalary));
+		cost = cost.add(customerServiceStaff.multiply(baseDailySalary).multiply(customerServiceBonus));
+		cost = cost.add(publicRelationShipStaff.multiply(baseDailySalary).multiply(publicRelationshipBonus));
 
 		return cost;
 
